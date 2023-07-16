@@ -1,18 +1,39 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="home-view">
+    <main>
+      <LegoViewTitle
+        :title='"Ethan Ozelius"'
+        :description='"Just a drifting computer hacker trying to get some sunshine."'
+        :subtext="'- Software Engineer learning by building and embracing the unknown.  When I\'m not coding, I\'m probably hiking the Hudson Valley, skating in a hockey game or doing some carpentry.'"
+        :image-url="profilePictureUrl"
+        image-alt-text="ethan ozelius profile picture"
+      />
+    </main>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+<script>
+import LegoViewTitle from '@/legos/LegoViewTitle.vue'
+import '@/assets/styles/ethanoz.scss'
 
-export default defineComponent({
+export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+    LegoViewTitle
+  },
+
+  computed: {
+    profilePictureUrl: function () {
+      const options = [
+        'colombia',
+        'flushing',
+        'hudson',
+        'istanbul',
+        'mexico'
+      ]
+      const randomProfilePic = options[Math.floor(Math.random() * options.length)]
+      return `profile_pictures/${randomProfilePic}.jpg`
+    }
   }
-})
+}
 </script>

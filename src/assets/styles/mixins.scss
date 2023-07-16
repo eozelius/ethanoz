@@ -1,0 +1,19 @@
+@mixin bluebox {
+  width: 85%;
+  align-self: center;
+  margin: 4% 0;
+  padding: 5% 4% 13%;
+  text-align: center;
+  background-color: $color-lite-blue-gray;
+  border-radius: 5px;
+}
+
+@mixin tag {
+  background-color: $color-solarized-blue-text;
+  color: $color-white;
+  margin: 0 5px 3px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  display: inline-block;
+  font-weight:bold;
+}

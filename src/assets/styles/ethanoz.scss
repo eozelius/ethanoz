@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Chettan+2&display=swap');
+@import './colors.scss';
+
+/* ethanoz.com custom resets */
+h1, h2, h3, h4, h5, h6, p, a {
+  // color: $color-dark-blue;
+  color: $color-lite-gray;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2.15em;
+}
+
+h3 {
+  font-size: 1.9em;
+}
+
+h4 {
+  font-size: 1.65em;
+}
+
+h5 {
+  font-size: 1.15em;
+}
+
+h6 {
+  font-size: .95em;
+}
+
+p {
+  font-size: 1.4em;
+  color: $color-dark-gray;
+  line-height: 1.4em;
+}
+
+a {
+  color: $color-lite-gray;
+
+  &:hover {
+    color: $color-dark-aqua;
+  }
+}
+
+span.dots {
+  display: block;
+  font-size: 30px;
+  font-family: 'Inconsolata', monospace;
+  height: 65px;
+}
+
+#app {
+  font-family: 'Baloo Chettan 2', Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
