@@ -1,5 +1,6 @@
 <template>
   <div :class="{ 'medium-article__container': true, 'abridged': abridged }">
+    <!-- read more overlay -->
     <div v-if="abridged" class="medium-article__overlay">
       <div class="overlay__read-more-container">
         <p @click="toggleAbridged">read more</p>
@@ -38,6 +39,7 @@
       <p class="publish-date"> - published {{ article.publishDate }}</p>
     </div>
 
+    <!-- paragraphs -->
     <div
       v-for="(p, i) in article.paragraphs"
       :key="i"
@@ -45,8 +47,6 @@
     >
 
     <!-- codeBlock -->
-      <!-- <script src="http://gist.github.com/2d7bcd3a9d6600b051c1e73da75d5bec.js"></script> -->
-
       <h6 v-if="p.type === 'codeBlock'">github gist coming soon...</h6>
 
       <!-- <vue-embed-gist
@@ -178,14 +178,16 @@ export default {
 }
 
 .medium-article__overlay {
-  display:flex;
+  display: flex;
+  // align-self: flex-end;
+  // align-items: flex-end;
   width: 110%;
   margin-left: -5%;
   position: relative;
   height: 95px;
-  top: 2050px;
-  right: 0;
-  left: 0;
+  top: 1980px;
+  // right: 0;
+  // left: 0;
   background: rgb(137,179,190);
   background: linear-gradient(0deg, rgba(137,179,190,1) 31%, rgba(230,238,240,0.80015756302521) 100%);
 }

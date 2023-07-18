@@ -120,8 +120,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/styles/colors.scss';
-
 .portfolio-view {
   display: flex;
   flex-direction: column;
