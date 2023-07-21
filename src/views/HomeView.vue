@@ -1,6 +1,28 @@
 <template>
   <div class="home-view">
     <main>
+      <div id="article-container">
+        <div :class="{ 'article-inner': true, 'truncated': truncated }">
+          <div class="overlay" @click="readMore">
+            <h3>read more</h3>
+          </div>
+
+          <div class="content">
+            <p>The Lorm alphabet is a method of tactile signing named after Hieronymus Lorm, who developed it in the late 19th century. Letters are spelled by tapping or </p>
+
+            <p>s a portable communication device allowing deaf-blind users to send and receive messages over a distance. It can interpret Lorm* Alphabet</p>
+
+            <p>The Lorm alphabet is a method of tactile signing named after Hieronymus Lorm, who developed it in the late 19th century. Letters are spelled by tapping or stroking different parts of the listener's hand. The Lorm alphabet is mostly used in German-speaking countries, the Netherlands, Czech Republic, Poland and Georgia.</p>
+
+            <p>HIERONYMUS (pseudonym of Heinrich Landesmann; 1821-1902), Austrian poet and novelist. The son of a prosperous Moravian merchant, Lorm was born in</p>
+
+            <p>Historically, surnames evolved as a way to sort people into groups - by occupation, place of origin, clan affiliation, patronage</p>
+
+            <p>8 Keys Doubleshot LOL Keycaps QWER ASDF Arrow 123456 Keycaps OEM Profile for Cherry MX Mechanical Keyboard Gaming DIY Replacement+Keycap Remover Free (Blue).</p>
+          </div>
+        </div>
+      </div>
+
       <LegoViewTitle
         :title='"Ethan Ozelius"'
         :description="'Software Engineer delivering professional code for 10 years.  I\'m passionate about leaving codebases better than I found them, while helping teammates grow.'"
@@ -66,6 +88,16 @@ export default {
     MediumArticle
   },
 
+  methods: {
+    readMore () {
+      this.truncated = false
+    }
+  },
+
+  data: () => ({
+    truncated: true
+  }),
+
   computed: {
     whatHaveIBeenUpToLately: function () {
       return whatHaveIBeenUpToLately
@@ -86,6 +118,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#article-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .article-inner {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    background-color: beige;
+    padding: 2%;
+    align-self: center;
+  }
+
+  .overlay {
+    order: 2;
+    visibility: hidden;
+  }
+
+  .article-inner.truncated {
+    .content {
+      height: 150px;
+      overflow: hidden;
+    }
+
+    .overlay {
+      visibility: visible;
+    }
+  }
+}
+
 .home-view {
   display: flex;
   flex-direction: column;

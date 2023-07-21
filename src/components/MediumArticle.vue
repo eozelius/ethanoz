@@ -1,81 +1,84 @@
 <template>
   <div :class="{ 'medium-article__container': true, 'abridged': shouldShowReadMore }">
     <!-- read more overlay -->
-    <div v-if="shouldShowReadMore" class="medium-article__overlay">
+    <!-- <div v-if="shouldShowReadMore" class="medium-article__overlay"> -->
+    <div class="medium-article__overlay">
       <div class="overlay__read-more-container">
         <p @click="toggleAbridged">read more</p>
       </div>
     </div>
 
-    <h2 class="medium-article__title">{{ article?.title }}</h2>
+    <div class="medium-article-content">
+      <h2 class="medium-article__title">{{ article?.title }}</h2>
 
-    <div class="medium-article__tags-container" v-if="tags.length">
-      <span
-        v-for="tag in tags"
-        :key="tag"
-        class="tag"
-      >
-        {{ tag }}
-      </span>
-    </div>
-
-    <img
-      v-if="article.mainImagePath"
-      :src="require(`@/assets/images/medium/${getIsMobile ? 'small': 'large'}/${article.mainImagePath}`)"
-      :alt="`${article?.title} image`"
-      class="medium-article__banner-image"
-    />
-
-    <div class="medium-article__link-and-publish-date-container">
-      <p class="medium-article-link" v-if="article.mediumLink">
-        <a
-          class="medium-article-link"
-          :href="article.mediumLink"
-          target="_blank"
+      <div class="medium-article__tags-container" v-if="tags.length">
+        <span
+          v-for="tag in tags"
+          :key="tag"
+          class="tag"
         >
-          read this article on medium
-        </a>
-      </p>
+          {{ tag }}
+        </span>
+      </div>
 
-      <p
-        v-if="article.publishDate"
-        class="publish-date"> - published {{ article.publishDate }}</p>
-    </div>
-
-    <!-- paragraphs -->
-    <div
-      v-for="(p, i) in article.paragraphs"
-      :key="i"
-      class="medium-article__paragraph"
-    >
-
-    <!-- codeBlock -->
-      <h6 v-if="p.type === 'codeBlock'">github gist coming soon...</h6>
-
-      <!-- <vue-embed-gist
-        v-if="p.type === 'codeBlock'"
-        :gist-id="p.gistId"
-        :gist-file="p.gistFile"
-      /> -->
-
-      <!-- text -->
-      <p v-if="p.type === 'text'">
-        {{ p.text }}
-      </p>
-
-      <!-- image -->
       <img
-        v-if="p.type === 'image'"
-        :src="require(`@/assets/images/medium/${getIsMobile ? 'small': 'large'}/${p.url}`)"
-        :alt="p.altText"
-        class="medium-article__image"
+        v-if="article.mainImagePath"
+        :src="require(`@/assets/images/medium/${getIsMobile ? 'small': 'large'}/${article.mainImagePath}`)"
+        :alt="`${article?.title} image`"
+        class="medium-article__banner-image"
       />
 
-      <span
-        v-if="p.dots"
-        class="dots">
-        ...
-      </span>
+      <div class="medium-article__link-and-publish-date-container">
+        <p class="medium-article-link" v-if="article.mediumLink">
+          <a
+            class="medium-article-link"
+            :href="article.mediumLink"
+            target="_blank"
+          >
+            read this article on medium
+          </a>
+        </p>
+
+        <p
+          v-if="article.publishDate"
+          class="publish-date"> - published {{ article.publishDate }}</p>
+      </div>
+
+      <!-- paragraphs -->
+      <div
+        v-for="(p, i) in article.paragraphs"
+        :key="i"
+        class="medium-article__paragraph"
+      >
+
+        <!-- codeBlock -->
+        <h6 v-if="p.type === 'codeBlock'">github gist coming soon...</h6>
+
+        <!-- <vue-embed-gist
+          v-if="p.type === 'codeBlock'"
+          :gist-id="p.gistId"
+          :gist-file="p.gistFile"
+        /> -->
+
+        <!-- text -->
+        <p v-if="p.type === 'text'">
+          {{ p.text }}
+        </p>
+
+        <!-- image -->
+        <img
+          v-if="p.type === 'image'"
+          :src="require(`@/assets/images/medium/${getIsMobile ? 'small': 'large'}/${p.url}`)"
+          :alt="p.altText"
+          class="medium-article__image"
+        />
+
+        <span
+          v-if="p.dots"
+          class="dots">
+          ...
+        </span>
+        </div>
     </div>
   </div>
 </template>
@@ -142,6 +145,9 @@ export default {
 
 .medium-article__container {
   @include bluebox;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
 }
 
 .tag {
@@ -193,17 +199,13 @@ export default {
 
 .medium-article__overlay {
   display: flex;
-  // align-self: flex-end;
-  // align-items: flex-end;
   width: 110%;
   margin-left: -5%;
-  position: relative;
   height: 95px;
-  top: 1980px;
-  // right: 0;
-  // left: 0;
+  order: 999;
   background: rgb(137,179,190);
   background: linear-gradient(0deg, rgba(137,179,190,1) 31%, rgba(230,238,240,0.80015756302521) 100%);
+  visibility: hidden;
 }
 
 .overlay__read-more-container {
@@ -224,5 +226,9 @@ export default {
 .abridged {
   height: 2000px;
   overflow: hidden;
+
+  .medium-article__overlay {
+    visibility: visible;
+  }
 }
 </style>
