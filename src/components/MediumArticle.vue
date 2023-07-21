@@ -1,13 +1,13 @@
 <template>
-  <div :class="{ 'medium-article__container': true, 'abridged': abridged }">
+  <div :class="{ 'medium-article__container': true, 'abridged': shouldShowReadMore }">
     <!-- read more overlay -->
-    <div v-if="abridged" class="medium-article__overlay">
+    <div v-if="shouldShowReadMore" class="medium-article__overlay">
       <div class="overlay__read-more-container">
         <p @click="toggleAbridged">read more</p>
       </div>
     </div>
 
-    <h2 class="medium-article__title">{{ article.title }}</h2>
+    <h2 class="medium-article__title">{{ article?.title }}</h2>
 
     <div class="medium-article__tags-container" v-if="tags.length">
       <span
@@ -20,8 +20,9 @@
     </div>
 
     <img
+      v-if="article.mainImagePath"
       :src="require(`@/assets/images/medium/${getIsMobile ? 'small': 'large'}/${article.mainImagePath}`)"
-      :alt="`${article.title} image`"
+      :alt="`${article?.title} image`"
       class="medium-article__banner-image"
     />
 
@@ -36,7 +37,9 @@
         </a>
       </p>
 
-      <p class="publish-date"> - published {{ article.publishDate }}</p>
+      <p
+        v-if="article.publishDate"
+        class="publish-date"> - published {{ article.publishDate }}</p>
     </div>
 
     <!-- paragraphs -->
@@ -92,7 +95,7 @@ export default {
     return {
       addMobileClass: isMobile(),
       size: isMobile() ? 'small' : 'large',
-      abridged: true
+      abridge: true
     }
   },
 
@@ -104,18 +107,29 @@ export default {
     tags: {
       type: Array,
       default: () => []
+    },
+    shouldAbridgeOverride: {
+      type: Boolean,
+      default: () => true
     }
   },
 
   computed: {
     getIsMobile () {
       return isMobile()
+    },
+    shouldShowReadMore () {
+      if (this.shouldAbridgeOverride === false) {
+        return false
+      } else {
+        return this.abridge
+      }
     }
   },
 
   methods: {
     toggleAbridged () {
-      this.abridged = false
+      this.abridge = false
     }
   }
 }
