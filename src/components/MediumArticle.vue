@@ -1,6 +1,6 @@
 <template>
   <div id="medium_article_container">
-    <div :class="{ 'article-inner': true, 'truncated': truncated }">
+    <div :class="{ 'article-inner': true, 'truncated': shouldShowReadMore }">
       <div class="overlay" @click="readMore">
         <p @click="readMore">read more</p>
       </div>
@@ -126,7 +126,7 @@ export default {
       if (this.shouldTruncateOverride === false) {
         return false
       } else {
-        return this.abridge
+        return this.truncated
       }
     }
   },
@@ -142,6 +142,12 @@ export default {
 <style lang="scss" scoped>
   @import '../assets/styles/colors.scss';
   @import '../assets/styles/mixins.scss';
+
+  @media screen and (min-width: 1200px) {
+    #medium_article_container {
+      max-width: 1150px;
+    }
+  }
 
   #medium_article_container {
     @include bluebox;
