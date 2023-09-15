@@ -28,7 +28,7 @@
     >
       <!-- picture slot -->
       <template v-slot:picture>
-        <a :href="minesweeperLink" target="_blank">
+        <a :href="nextrisLink" target="_blank">
           <Picture
             url="demos/nextris.png"
             :altText="`Nextris demo link: ${minesweeperLink}`"
