@@ -113,6 +113,11 @@ export default {
   text-align: left;
 }
 
+.lego-view-title__description::selection {
+  color: $color-dark-blue;
+  background: $color-lite-blue-gray;
+}
+
 .lego-view-title__subtext p {
   text-align: right;
   margin-bottom: .5em;

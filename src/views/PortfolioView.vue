@@ -3,7 +3,10 @@
     <!-- Porfolio Banner: octocat, page title and description -->
     <LegoViewTitle
       :title="'Ethan Ozelius Portfolio'"
-      :description="'Open source projects, Games and Demo Apps'"
+      :description="[
+        'Open source projects, Games and Demo Apps',
+        'These projects keep coding fun for me and allow me to experiment and learn.  I strive to create projects include aesthetically front ends as well as complexly simple back ends '
+      ]"
       :imageAltText="'github profile'"
       imageUrl="demos/octocat.png"
     >
@@ -16,6 +19,31 @@
         </div>
       </template>
     </LegoViewTitle>
+
+    <!-- Nextris -->
+    <LegoBox
+      :title='"Nextris"'
+      :description="'Classic tetris game built with Next.js, React and typescript.  Deployed with Vercel'"
+      :tags="nextrisTags"
+    >
+      <!-- picture slot -->
+      <template v-slot:picture>
+        <a :href="minesweeperLink" target="_blank">
+          <Picture
+            url="demos/nextris.png"
+            :altText="`Nextris demo link: ${minesweeperLink}`"
+          />
+        </a>
+      </template>
+
+      <!-- subtext slot -->
+      <template v-slot:subtext>
+        <p class="view-on-github">
+          - View this project on
+          <a href="https://github.com/eozelius/nextris" target="_blank">github.</a>
+        </p>
+      </template>
+    </LegoBox>
 
     <!-- Minesweeper -->
     <LegoBox
@@ -35,9 +63,38 @@
 
       <!-- subtext slot -->
       <template v-slot:subtext>
-        <p>
+        <p class="view-on-github">
           - View this project on
-          <a href="https://github.com/eozelius/vue-minesweeper" target="_blank">github.</a>
+          <a href="https://github.com/eozelius/minesweeper" target="_blank">github.</a>
+        </p>
+      </template>
+    </LegoBox>
+
+    <!-- Ethanoz -->
+    <LegoBox
+      :title="'ethanoz.com'"
+      :description="[
+        'Thank you for checking out ethanoz.com! My personal website to experiment with new web technologies and share what\'s going on in my life.',
+        'I originally built ethanoz.com in Vue 2, but I have recently upgraded to Vue 3 to leverage the new \'Composition api\', as well as introduced typescript.  While this app may look purely front end, there are a lot of processes running in the background to keep this app running seamlessly.  ethanoz.com is hosted on an AWS linux server inside of EC2, using S3 for routing.',
+        'In an effort to make building/running/deploying this app easily across my macbook and linux servers, I created a docker container to run all the required services: node, npm, nginx and certbot.',
+        'Stay tuned for an upcoming medium article detailing the architecture!'
+        // 'To learn more about what makes ethanoz.com run, check out this project on github.'
+      ]"
+      :tags="ethanozTags"
+    >
+      <!-- picture slot -->
+      <template v-slot:picture>
+        <Picture
+          url="demos/ethanoz.png"
+          :altText="'image for ethanoz.com'"
+        />
+      </template>
+
+      <!-- subtext slot -->
+      <template v-slot:subtext>
+        <p class="view-on-github">
+          - View this project on
+          <a href="https://github.com/eozelius/ethanoz" target="_blank">github.</a>
         </p>
       </template>
     </LegoBox>
@@ -45,7 +102,11 @@
     <!-- Super(fluous) -->
     <LegoBox
       :title="'Everyone likes strings, but you\'ll love Super(fluous)ly Encoded Bytecode!'"
-      :description="'The Super(fluous) Encoder scrambles bundles of 4 characters into 32-bit integer values'"
+      :description="[
+        'The Super(fluous) Encoder scrambles bundles of 4 characters into 32-bit integer values',
+        'Forgive the satirical nature of this app, this app is fun play on the questionable hoops that we force people through in interview processes',
+        'This is an Angular app with a simple form that encodes/decodes strings into 32-bit interger values.  That\'s it!'
+      ]"
       :tags="superfluousTags"
     >
       <!-- picture slot -->
@@ -62,7 +123,7 @@
 
       <!-- subtext slot -->
       <template v-slot:subtext>
-        <p>
+        <p class="view-on-github">
           - View this project on
           <a href="https://github.com/eozelius/superfluous" target="_blank">github.</a>
         </p>
@@ -86,6 +147,7 @@ export default {
   },
 
   computed: {
+    nextrisLink: () => process.env.VUE_APP_NEXTRIS_URL,
     minesweeperLink: () => process.env.VUE_APP_MINESWEEPER_URL,
     superfluousLink: () => process.env.VUE_APP_SUPERFLUOUS_URL,
     weatherLink: () => process.env.VUE_APP_WEATHER_URL,
@@ -104,6 +166,13 @@ export default {
       TAGS.javascript,
       TAGS.webpack
     ],
+    ethanozTags: () => [
+      TAGS.vue,
+      TAGS.typescript,
+      TAGS.docker,
+      TAGS.nginx,
+      TAGS.AWS
+    ],
     weatherTags: () => [
       TAGS.react,
       TAGS.createreactapp,
@@ -114,6 +183,13 @@ export default {
       TAGS.vue,
       TAGS.javascript,
       TAGS.webpack
+    ],
+    nextrisTags: () => [
+      TAGS.react,
+      TAGS.typescript,
+      TAGS.nextjs,
+      TAGS.vercel,
+      TAGS.javascript
     ]
   }
 }
@@ -124,5 +200,9 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.view-on-github {
+  margin-bottom: 1em;
 }
 </style>

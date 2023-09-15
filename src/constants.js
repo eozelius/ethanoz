@@ -6,5 +6,9 @@ export const TAGS = {
   nginx: 'nginx',
   vue: 'vue.js',
   javascript: 'javascript',
-  webpack: 'webpack'
+  webpack: 'webpack',
+  docker: 'Docker',
+  AWS: 'AWS',
+  nextjs: 'Next.js',
+  vercel: 'Vercel'
 }

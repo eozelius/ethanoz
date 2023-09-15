@@ -143,14 +143,10 @@ export default {
   @import '../assets/styles/colors.scss';
   @import '../assets/styles/mixins.scss';
 
-  @media screen and (min-width: 1200px) {
-    #medium_article_container {
-      max-width: 1150px;
-    }
-  }
-
   #medium_article_container {
-    @include bluebox;
+    @include bluebox(large) {
+      max-width: 1150px;
+    };
     display: flex;
     justify-content: center;
     flex-direction: column;

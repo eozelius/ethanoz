@@ -95,7 +95,9 @@ export default {
 @import '../assets/styles/mixins.scss';
 
 .box-container {
-  @include bluebox;
+  @include bluebox(large) {
+    max-width: 1150px;
+  };
 
   .box-title {
     color: $color-dark-blue;

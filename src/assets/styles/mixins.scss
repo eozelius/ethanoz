@@ -1,4 +1,4 @@
-@mixin bluebox {
+@mixin bluebox($breakpoint) {
   width: 85%;
   align-self: center;
   margin: 4% 0;
@@ -6,6 +6,12 @@
   text-align: center;
   background-color: $color-lite-blue-gray;
   border-radius: 5px;
+
+  @if $breakpoint == large {
+    @media screen and (min-width: 1200px) {
+      @content
+    }
+  }
 }
 
 @mixin tag {

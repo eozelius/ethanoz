@@ -3,7 +3,7 @@
     <main>
       <LegoViewTitle
         :title='"Ethan Ozelius"'
-        :description="'Software Engineer delivering professional code for 10 years.  I\'m passionate about leaving codebases better than I found them, while helping teammates grow.'"
+        :description="'Software Engineer delivering professional code for 9 years.  I\'m passionate about leaving codebases better than I found them, while helping teammates grow.'"
         :subtext="'I am actively searching for new employment opportunities after I was affected by company wide layoffs.  I am eager to contribute to a highly collaborative team that fosters an environment of innovation and camaraderie.  I value focused companies that learn from both success and especially failure, make data informed decisions.'"
         :image-url="profilePictureUrl"
         image-alt-text="ethan ozelius profile picture"
